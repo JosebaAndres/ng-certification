@@ -1,1 +1,5 @@
-<app-location-item></app-location-item> <app-location-item></app-location-item>
+<ul>
+  <li *ngFor="let locationWeather of locationsWeather$ | async">
+    <app-location-item [locationWeather]="locationWeather"></app-location-item>
+  </li>
+</ul>
