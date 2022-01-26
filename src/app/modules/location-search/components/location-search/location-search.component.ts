@@ -1,11 +1,12 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { WeatherService } from "../../../../services/weather.service";
+import { WeatherService } from "../../../../services/weather.service/weather.service";
 
 @Component({
   selector: "app-location-search",
   templateUrl: "./location-search.component.html",
   styleUrls: ["./location-search.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LocationSearchComponent {
   locationForm = new FormGroup({

@@ -1,3 +1,16 @@
 <div>
-  {{ locationWeather?.zipCode }}
+  <app-location-item-loading
+    *ngIf="isLoading"
+    [zipCode]="locationWeather.zipCode"
+    (remove)="emitRemove(locationWeather.zipCode)"
+  ></app-location-item-loading>
+  <app-location-item-card
+    *ngIf="isLoaded"
+    (remove)="emitRemove(locationWeather.zipCode)"
+  ></app-location-item-card>
+  <app-location-item-error
+    *ngIf="isError"
+    [zipCode]="locationWeather.zipCode"
+    (remove)="emitRemove(locationWeather.zipCode)"
+  ></app-location-item-error>
 </div>

@@ -1,5 +1,11 @@
-<ul>
-  <li *ngFor="let locationWeather of locationsWeather$ | async">
-    <app-location-item [locationWeather]="locationWeather"></app-location-item>
+<ul class="list-group">
+  <li
+    class="list-group-item"
+    *ngFor="let locationWeather of locationsWeather$ | async"
+  >
+    <app-location-item
+      [locationWeather]="locationWeather"
+      (remove)="removeZipCode($event)"
+    ></app-location-item>
   </li>
 </ul>
