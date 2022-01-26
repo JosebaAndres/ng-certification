@@ -7,7 +7,7 @@ import {
   Output,
   SimpleChanges,
 } from "@angular/core";
-import { LocationWeatherViewModel } from "../../../../services/weather.service/viewmodels/location-weather-view-models";
+import { LocationWeatherViewModel } from "../../../../services/weather/viewmodels/location-weather-view-models";
 
 @Component({
   selector: "app-location-item",

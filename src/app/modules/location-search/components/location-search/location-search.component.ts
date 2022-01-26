@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { WeatherService } from "../../../../services/weather.service/weather.service";
+import { WeatherService } from "../../../../services/weather/weather.service";
 
 @Component({
   selector: "app-location-search",
@@ -16,7 +16,7 @@ export class LocationSearchComponent {
   constructor(private weatherService: WeatherService) {}
 
   onSubmit() {
-    this.weatherService.searchZipCode(this.locationForm.controls.zipcode.value);
+    this.weatherService.addZipCode(this.locationForm.controls.zipcode.value);
     this.locationForm.reset();
   }
 }

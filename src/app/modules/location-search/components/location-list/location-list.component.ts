@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
-import { WeatherService } from "../../../../services/weather.service/weather.service";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { LocationWeatherViewModel } from "../../../../services/weather/viewmodels/location-weather-view-models";
+import { WeatherService } from "../../../../services/weather/weather.service";
 
 @Component({
   selector: "app-location-list",
@@ -14,5 +15,9 @@ export class LocationListComponent {
 
   removeZipCode(value: string) {
     this.weatherService.removeZipCode(value);
+  }
+
+  identify(index: number, item: LocationWeatherViewModel) {
+    return item.zipCode;
   }
 }

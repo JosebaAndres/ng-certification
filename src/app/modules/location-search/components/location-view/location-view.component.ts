@@ -1,16 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 
 @Component({
-  selector: 'app-location-view',
-  templateUrl: './location-view.component.html',
-  styleUrls: ['./location-view.component.css'],
+  selector: "app-location-view",
+  templateUrl: "./location-view.component.html",
+  styleUrls: ["./location-view.component.css"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LocationViewComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class LocationViewComponent {
+  constructor() {}
 }

@@ -1,7 +1,7 @@
 <ul class="list-group">
   <li
     class="list-group-item"
-    *ngFor="let locationWeather of locationsWeather$ | async"
+    *ngFor="let locationWeather of locationsWeather$ | async; trackBy: identify"
   >
     <app-location-item
       [locationWeather]="locationWeather"

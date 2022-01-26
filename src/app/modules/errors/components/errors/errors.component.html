@@ -1,0 +1,8 @@
+<ul class="list-group">
+  <li
+    class="list-group-item"
+    *ngFor="let error of errors$ | async; trackBy: identify"
+  >
+    <app-error [error]="error"></app-error>
+  </li>
+</ul>
