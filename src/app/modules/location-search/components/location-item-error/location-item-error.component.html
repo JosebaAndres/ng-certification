@@ -1,7 +1,8 @@
-<div class="well flex">
-  <div>
+<div class="well app-location-item-error__container">
+  <div class="app-location-item-error__main">
     <h3>{{ zipCode }}</h3>
     <div class="alert alert-danger" role="alert">An error has occurred</div>
+    <button class="btn" (click)="emitReload()">Reload</button>
   </div>
   <div>
     <span class="close" (click)="emitRemove()">x</span>

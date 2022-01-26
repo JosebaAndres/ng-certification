@@ -1,0 +1,7 @@
+.app-error__container {
+  display: flex;
+}
+
+.app-error__main {
+  flex: 1;
+}

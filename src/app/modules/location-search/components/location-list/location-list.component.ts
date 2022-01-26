@@ -17,6 +17,10 @@ export class LocationListComponent {
     this.weatherService.removeZipCode(value);
   }
 
+  reloadZipCode(value: string) {
+    this.weatherService.reloadZipCode(value);
+  }
+
   identify(index: number, item: LocationWeatherViewModel) {
     return item.zipCode;
   }

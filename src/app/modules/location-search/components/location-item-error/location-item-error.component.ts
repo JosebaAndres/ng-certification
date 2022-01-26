@@ -15,10 +15,15 @@ import {
 export class LocationItemErrorComponent {
   @Input() zipCode!: string;
   @Output() remove = new EventEmitter<void>();
+  @Output() reload = new EventEmitter<void>();
 
   constructor() {}
 
   emitRemove() {
     this.remove.emit();
+  }
+
+  emitReload() {
+    this.reload.emit();
   }
 }

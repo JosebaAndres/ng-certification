@@ -1,3 +1,4 @@
-<div class="alert alert-danger" role="alert">
-  {{ error.message }}
+<div class="alert alert-danger app-error__container" role="alert">
+  <div class="app-error__main">{{ error.message }}</div>
+  <span class="close" (click)="emitRemove()">x</span>
 </div>

@@ -24,19 +24,7 @@ export class WeatherService {
     const newValue = [...this.locationsWeather.value];
     newValue.push({ zipCode: value, state: "loading" });
     this.locationsWeather.next(newValue);
-    this.openWeatherApiService.getCurrentWeatherDataByZipCode(value).subscribe({
-      next: (result) => {
-        this.zipCodeLoaded(value, result);
-      },
-      error: (error) => {
-        if (this.openWeatherApiService.isCityNotFoundError(error)) {
-          this.removeZipCode(value);
-          this.errorService.addError(`${value}: ${error.message}`);
-        } else {
-          this.zipCodeError(value);
-        }
-      },
-    });
+    this.loadZipCode(value);
   }
 
   removeZipCode(value: string) {
@@ -49,6 +37,27 @@ export class WeatherService {
       newValue.splice(locationWeatherIndex, 1);
       this.locationsWeather.next(newValue);
     }
+  }
+
+  reloadZipCode(value: string) {
+    this.UpdateZipCode(value, { state: "loading", data: undefined });
+    this.loadZipCode(value);
+  }
+
+  private loadZipCode(value: string) {
+    this.openWeatherApiService.getCurrentWeatherDataByZipCode(value).subscribe({
+      next: (result) => {
+        this.zipCodeLoaded(value, result);
+      },
+      error: (error) => {
+        if (this.openWeatherApiService.isHandledError(error)) {
+          this.removeZipCode(value);
+          this.errorService.addError(`${value}: ${error.message}`);
+        } else {
+          this.zipCodeError(value);
+        }
+      },
+    });
   }
 
   private zipCodeLoaded(zipCode: string, value: Model200) {

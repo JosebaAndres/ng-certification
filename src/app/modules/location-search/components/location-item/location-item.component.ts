@@ -23,6 +23,7 @@ export class LocationItemComponent implements OnChanges {
   @Input()
   locationWeather!: LocationWeatherViewModel;
   @Output() remove = new EventEmitter<string>();
+  @Output() reload = new EventEmitter<string>();
 
   constructor() {}
 
@@ -34,6 +35,10 @@ export class LocationItemComponent implements OnChanges {
 
   emitRemove(value: string) {
     this.remove.emit(value);
+  }
+
+  emitReload(value: string) {
+    this.reload.emit(value);
   }
 
   private refreshStatus() {

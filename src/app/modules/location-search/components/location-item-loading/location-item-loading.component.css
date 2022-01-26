@@ -1,0 +1,6 @@
+.app-location-item-loading__container {
+  display: flex;
+}
+.app-location-item-loading__main {
+  flex: 1;
+}

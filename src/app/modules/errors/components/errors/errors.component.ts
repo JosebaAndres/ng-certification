@@ -16,4 +16,8 @@ export class ErrorsComponent {
   identify(index: number, item: ErrorModel) {
     return item.id;
   }
+
+  remove(id: string) {
+    this.errorService.removeError(id);
+  }
 }

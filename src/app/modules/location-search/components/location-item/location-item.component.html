@@ -12,5 +12,6 @@
     *ngIf="isError"
     [zipCode]="locationWeather.zipCode"
     (remove)="emitRemove(locationWeather.zipCode)"
+    (reload)="emitReload(locationWeather.zipCode)"
   ></app-location-item-error>
 </div>

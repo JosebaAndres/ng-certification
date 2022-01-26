@@ -1,0 +1,7 @@
+.app-location-item-error__container {
+  display: flex;
+}
+
+.app-location-item-error__main {
+  flex: 1;
+}

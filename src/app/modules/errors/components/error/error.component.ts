@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from "@angular/core";
 import { ErrorModel } from "../../../../services/error/model/error-model";
 
 @Component({
@@ -9,6 +15,11 @@ import { ErrorModel } from "../../../../services/error/model/error-model";
 })
 export class ErrorComponent {
   @Input() error!: ErrorModel;
+  @Output() remove = new EventEmitter<void>();
 
   constructor() {}
+
+  emitRemove() {
+    this.remove.emit();
+  }
 }
