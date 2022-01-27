@@ -6,6 +6,7 @@
   ></app-location-item-loading>
   <app-location-item-card
     *ngIf="isLoaded"
+    [locationWeather]="locationWeather"
     (remove)="emitRemove(locationWeather.zipCode)"
   ></app-location-item-card>
   <app-location-item-error

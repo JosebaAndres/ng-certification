@@ -20,8 +20,7 @@ export class LocationItemComponent implements OnChanges {
   isLoaded = false;
   isError = false;
 
-  @Input()
-  locationWeather!: LocationWeatherViewModel;
+  @Input() locationWeather!: LocationWeatherViewModel;
   @Output() remove = new EventEmitter<string>();
   @Output() reload = new EventEmitter<string>();
 
