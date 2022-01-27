@@ -9,7 +9,7 @@
       {{ locationWeather.data?.main?.tempMin }}
     </p>
     <p>
-      <a href="/forecast/95742"
+      <a [routerLink]="['forecast', locationWeather.zipCode]"
         >Show 5-day forecast for {{ locationWeather.data?.name }}</a
       >
     </p>

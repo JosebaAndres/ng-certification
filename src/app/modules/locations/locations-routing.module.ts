@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { LocationViewComponent } from "./components/location-view/location-view.component";
+import { LocationsViewComponent } from "./components/locations-view/locations-view.component";
 
 const routes: Routes = [
   {
     path: "",
-    component: LocationViewComponent,
+    component: LocationsViewComponent,
   },
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class LocationListRoutingModule {}
+export class LocationsRoutingModule {}

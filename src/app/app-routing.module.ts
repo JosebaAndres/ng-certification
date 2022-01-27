@@ -5,10 +5,18 @@ const routes: Routes = [
   {
     path: "",
     loadChildren: () =>
-      import("./modules/location-search/location-list.module").then(
-        (m) => m.LocationListModule
+      import("./modules/locations/locations.module").then(
+        (m) => m.LocationsModule
       ),
   },
+  {
+    path: "forecast",
+    loadChildren: () =>
+      import("./modules/forecast/forecast.module").then(
+        (m) => m.ForecastModule
+      ),
+  },
+  { path: "**", redirectTo: "" },
 ];
 
 @NgModule({
