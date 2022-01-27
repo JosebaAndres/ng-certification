@@ -1,7 +1,7 @@
-import { Model200 } from "../../open-weather-api/models/model200";
+import { WeatherResult } from "../../open-weather-api/models/weather-result";
 
 export interface LocationWeatherViewModel {
   zipCode: string;
   state: "loaded" | "loading" | "error";
-  data?: Model200;
+  data?: WeatherResult;
 }

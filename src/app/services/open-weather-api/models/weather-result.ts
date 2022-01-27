@@ -7,7 +7,7 @@ import { Sys } from "./sys";
 import { Weather } from "./weather";
 import { Wind } from "./wind";
 
-export interface Model200 {
+export interface WeatherResult {
   coord?: Coord;
   /**
    * (more info Weather condition codes)

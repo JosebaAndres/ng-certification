@@ -1,1 +1,11 @@
-PACO
+<div>
+  <app-forecast-loading
+    *ngIf="isLoading$ | async"
+    [zipCode]="(selectedForecast$ | async)?.zipCode"
+  ></app-forecast-loading>
+  <app-forecast-list
+    *ngIf="isLoaded$ | async"
+    [selectedForecast]="(this.selectedForecast$ | async)?.data"
+  ></app-forecast-list>
+  <app-forecast-error *ngIf="isError$ | async"></app-forecast-error>
+</div>

@@ -1,8 +1,9 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, throwError } from "rxjs";
-import { Model200 } from "./models/model200";
+import { WeatherResult } from "./models/weather-result";
 import { HandledError } from "./models/handled-error";
+import { ForecastDailyResult } from "./models/forecast-daily-result";
 
 const OPEN_WEATHER_API_URL = "https://api.openweathermap.org/data/2.5";
 const OPEN_WEATHER_API_APP_ID = "5a4b2d457ecbef9eb2a71e480b947604";
@@ -13,10 +14,19 @@ const OPEN_WEATHER_API_APP_ID = "5a4b2d457ecbef9eb2a71e480b947604";
 export class OpenWeatherApiService {
   constructor(private httpClient: HttpClient) {}
 
-  getCurrentWeatherDataByZipCode(zipCode: string) {
+  getCurrentWeatherDataByZipCode(zipCode: string): Observable<WeatherResult> {
     let httpParams = new HttpParams();
     httpParams = httpParams.set("zip", zipCode);
-    return this.get("weather", httpParams);
+    return this.get<WeatherResult>("weather", httpParams);
+  }
+
+  getFivedayForecastByZipCode(
+    zipCode: string
+  ): Observable<ForecastDailyResult> {
+    let httpParams = new HttpParams();
+    httpParams = httpParams.set("cnt", 5);
+    httpParams = httpParams.set("zip", zipCode);
+    return this.get<ForecastDailyResult>("forecast/daily", httpParams);
   }
 
   isHandledError(error: any): error is HandledError {
@@ -30,10 +40,10 @@ export class OpenWeatherApiService {
     }
   }
 
-  private get(urlPath: string, httpParams: HttpParams): Observable<Model200> {
+  private get<T>(urlPath: string, httpParams: HttpParams): Observable<T> {
     const resolvedHttpParams = httpParams.set("appid", OPEN_WEATHER_API_APP_ID);
     return this.httpClient
-      .get<Model200>(`${OPEN_WEATHER_API_URL}/${urlPath}`, {
+      .get<T>(`${OPEN_WEATHER_API_URL}/${urlPath}`, {
         params: resolvedHttpParams,
       })
       .pipe(

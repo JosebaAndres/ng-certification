@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from "@angular/core";
 import { LocationWeatherViewModel } from "./viewmodels/location-weather-view-models";
 import { BehaviorSubject, map, ReplaySubject, takeUntil } from "rxjs";
 import { OpenWeatherApiService } from "../open-weather-api/open-weather-api.service";
-import { Model200 } from "../open-weather-api/models/model200";
+import { WeatherResult } from "../open-weather-api/models/weather-result";
 import { ErrorService } from "../error/error.service";
 import { isArrayString } from "../../utils/is-array-string";
 
@@ -76,7 +76,7 @@ export class WeatherService implements OnDestroy {
     });
   }
 
-  private zipCodeLoaded(zipCode: string, value: Model200) {
+  private zipCodeLoaded(zipCode: string, value: WeatherResult) {
     this.UpdateZipCode(zipCode, { state: "loaded", data: value });
   }
 
