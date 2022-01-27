@@ -1,14 +1,18 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnDestroy } from "@angular/core";
 import { LocationWeatherViewModel } from "./viewmodels/location-weather-view-models";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, map, ReplaySubject, takeUntil } from "rxjs";
 import { OpenWeatherApiService } from "../open-weather-api/open-weather-api.service";
 import { Model200 } from "../open-weather-api/models/model200";
 import { ErrorService } from "../error/error.service";
+import { isArrayString } from "../../utils/is-array-string";
+
+const LOCAL_STORAGE_KEY = "zipCodes";
 
 @Injectable({
   providedIn: "root",
 })
-export class WeatherService {
+export class WeatherService implements OnDestroy {
+  private destroy$ = new ReplaySubject<void>();
   private locationsWeather = new BehaviorSubject<
     Array<LocationWeatherViewModel>
   >([]);
@@ -18,13 +22,25 @@ export class WeatherService {
   constructor(
     private openWeatherApiService: OpenWeatherApiService,
     private errorService: ErrorService
-  ) {}
+  ) {
+    this.tryLoadLocalStorage();
+    this.attachToRefreshLocalStorage();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+  }
 
   addZipCode(value: string) {
-    const newValue = [...this.locationsWeather.value];
-    newValue.push({ zipCode: value, state: "loading" });
-    this.locationsWeather.next(newValue);
-    this.loadZipCode(value);
+    const locationWeather = this.locationsWeather.value.find(
+      (locationWeather) => locationWeather.zipCode === value
+    );
+    if (!locationWeather) {
+      const newValue = [...this.locationsWeather.value];
+      newValue.push({ zipCode: value, state: "loading" });
+      this.locationsWeather.next(newValue);
+      this.loadZipCode(value);
+    }
   }
 
   removeZipCode(value: string) {
@@ -83,6 +99,48 @@ export class WeatherService {
         ...value,
       };
       this.locationsWeather.next(newValue);
+    }
+  }
+
+  private attachToRefreshLocalStorage() {
+    this.locationsWeather$
+      .pipe(
+        takeUntil(this.destroy$),
+        map((locationsWeather) => {
+          return locationsWeather.map((locationWeather) => {
+            return locationWeather.zipCode;
+          });
+        })
+      )
+      .subscribe((value) => {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(value));
+      });
+  }
+
+  private tryLoadLocalStorage() {
+    const localStorageStringData = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (localStorageStringData) {
+      const localStorageData = this.tryParseLocalStorageStringData(
+        localStorageStringData
+      );
+      localStorageData.forEach((localStorageDataItem) => {
+        this.addZipCode(localStorageDataItem);
+      });
+    }
+  }
+
+  private tryParseLocalStorageStringData(
+    localStorageStringData: string
+  ): Array<string> {
+    try {
+      const localStorageData = JSON.parse(localStorageStringData);
+      if (isArrayString(localStorageData)) {
+        return localStorageData;
+      } else {
+        return [];
+      }
+    } catch (error) {
+      return [];
     }
   }
 }
