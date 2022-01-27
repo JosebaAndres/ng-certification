@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Output,
+} from "@angular/core";
 
 @Component({
   selector: "app-forecast-error",
@@ -6,4 +11,12 @@ import { ChangeDetectionStrategy, Component } from "@angular/core";
   styleUrls: ["./forecast-error.component.css"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ForecastErrorComponent {}
+export class ForecastErrorComponent {
+  @Output() reload = new EventEmitter<void>();
+
+  constructor() {}
+
+  emitReload() {
+    this.reload.emit();
+  }
+}

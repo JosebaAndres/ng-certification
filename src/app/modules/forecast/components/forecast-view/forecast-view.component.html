@@ -1,4 +1,4 @@
-<div>
+<div class="container-fluid">
   <app-forecast-loading
     *ngIf="isLoading$ | async"
     [zipCode]="(selectedForecast$ | async)?.zipCode"
@@ -7,5 +7,9 @@
     *ngIf="isLoaded$ | async"
     [selectedForecast]="(this.selectedForecast$ | async)?.data"
   ></app-forecast-list>
-  <app-forecast-error *ngIf="isError$ | async"></app-forecast-error>
+  <app-forecast-error
+    *ngIf="isError$ | async"
+    (reload)="reload()"
+  ></app-forecast-error>
+  <a class="btn btn-success" [routerLink]="['']"> &lt; Back to main page </a>
 </div>

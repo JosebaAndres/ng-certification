@@ -25,6 +25,12 @@ export class ForecastService {
     this.loadZipCode(value);
   }
 
+  reload() {
+    if (this.selectedForecast.value) {
+      this.setSelectedForecast(this.selectedForecast.value.zipCode);
+    }
+  }
+
   private loadZipCode(zipCode: string) {
     this.openWeatherApiService.getFivedayForecastByZipCode(zipCode).subscribe({
       next: (result) => {

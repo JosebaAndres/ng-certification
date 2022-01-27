@@ -1,20 +1,17 @@
-<div class="container-fluid">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">
-        5-day forecast for {{ selectedForecast?.city?.name }}
-      </h3>
-    </div>
-    <ul class="list-group">
-      <li
-        class="list-group-item"
-        *ngFor="let forecastDaily of selectedForecast?.list; trackBy: identify"
-      >
-        <app-forecast-list-item
-          [forecastDaily]="forecastDaily"
-        ></app-forecast-list-item>
-      </li>
-    </ul>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      5-day forecast for {{ selectedForecast?.city?.name }}
+    </h3>
   </div>
-  <a class="btn btn-success" [routerLink]="['']"> &lt; Back to main page </a>
+  <ul class="list-group">
+    <li
+      class="list-group-item"
+      *ngFor="let forecastDaily of selectedForecast?.list; trackBy: identify"
+    >
+      <app-forecast-list-item
+        [forecastDaily]="forecastDaily"
+      ></app-forecast-list-item>
+    </li>
+  </ul>
 </div>

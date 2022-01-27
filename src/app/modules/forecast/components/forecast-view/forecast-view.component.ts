@@ -44,6 +44,10 @@ export class ForecastViewComponent implements OnDestroy {
       });
   }
 
+  reload() {
+    this.forecastService.reload();
+  }
+
   ngOnDestroy(): void {
     this.destroy$.next();
   }
