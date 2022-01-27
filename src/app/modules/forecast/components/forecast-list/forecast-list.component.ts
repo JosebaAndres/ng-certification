@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core";
+import { ForecastDaily } from "../../../../services/open-weather-api/models/forecast-daily";
 import { ForecastDailyResult } from "../../../../services/open-weather-api/models/forecast-daily-result";
 
 @Component({
@@ -9,4 +10,8 @@ import { ForecastDailyResult } from "../../../../services/open-weather-api/model
 })
 export class ForecastListComponent {
   @Input() selectedForecast: ForecastDailyResult | undefined;
+
+  identify(index: number, item: ForecastDaily) {
+    return item;
+  }
 }

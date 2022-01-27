@@ -5,6 +5,7 @@ import { ForecastRoutingModule } from "./forecast-routing.module";
 import { ForecastErrorComponent } from "./components/forecast-error/forecast-error.component";
 import { ForecastLoadingComponent } from "./components/forecast-loading/forecast-loading.component";
 import { ForecastListComponent } from "./components/forecast-list/forecast-list.component";
+import { ForecastListItemComponent } from "./components/forecast-list-item/forecast-list.component";
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { ForecastListComponent } from "./components/forecast-list/forecast-list.
     ForecastErrorComponent,
     ForecastListComponent,
     ForecastLoadingComponent,
+    ForecastListItemComponent,
   ],
   imports: [CommonModule, ForecastRoutingModule],
   exports: [],
