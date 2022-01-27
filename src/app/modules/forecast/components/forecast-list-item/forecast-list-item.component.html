@@ -1,8 +1,5 @@
 <li class="list-group-item">
-  Monday, Mar 23: Rain - Min: 45 - Max: 59
-
-  <img
-    class="icon"
-    src="https://www.angulartraining.com/images/weather/rain.png"
-  />
+  {{ forecastDaily?.dt | date: "EEEE, MMM d" }}: {{ weatherMain }} - Min:
+  {{ forecastDaily?.temp?.min }} - Max: {{ forecastDaily?.temp?.max }}
+  <img *ngIf="weatherIcon" class="icon" [src]="weatherIcon" />
 </li>

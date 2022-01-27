@@ -14,11 +14,11 @@ export interface Main {
   /**
    * Minimum temperature at the moment. This is deviation from current temp that is possible for large cities and megalopolises geographically expanded (use these parameter optionally). Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
    */
-  tempMin?: number;
+  temp_min?: number;
   /**
    * Maximum temperature at the moment. This is deviation from current temp that is possible for large cities and megalopolises geographically expanded (use these parameter optionally). Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
    */
-  tempMax?: number;
+  temp_max?: number;
   /**
    * Atmospheric pressure on the sea level, hPa
    */
